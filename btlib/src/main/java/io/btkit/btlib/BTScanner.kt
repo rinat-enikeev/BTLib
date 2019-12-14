@@ -31,10 +31,6 @@ class BTScanner: Service() {
 
     private val leScanCallback = object : BluetoothAdapter.LeScanCallback {
         override fun onLeScan(device: BluetoothDevice?, rssi: Int, scanRecord: ByteArray?) {
-            Log.e("dfsa", "devise address = ${device!!.address}")
-            Log.e("dfsa", "devise name = ${device!!.name}")
-            Log.e("dfsa", "devise uuids = ${device!!.uuids}")
-            Log.e("dfsa", "devise scanRecord = ${scanRecord?.size}")
             // offset = 7
             val ruuviTag = DecodeFormat5.decode(scanRecord, 7)
             callback?.invoke(ruuviTag)
